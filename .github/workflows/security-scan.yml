@@ -3,13 +3,7 @@ name: OWASP ZAP Security Scan
 on:
   push:
     branches:
-      - test
-
-permissions:
-  contents: read
-  actions: write
-  security-events: write
-  issues: write
+      - test  # Trigger on push to the 'test' branch
 
 jobs:
   zap_scan:
@@ -17,22 +11,19 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4  # Checkout the repository code
 
       - name: Run OWASP ZAP Baseline Scan
         uses: zaproxy/action-baseline@v0.11.0
         with:
-          target: 'https://silly-capybara-11cf1f.netlify.app/'
-          fail_action: false
-          artifact_name: "owasp_zap_results"
-
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          target: 'https://silly-capybara-11cf1f.netlify.app/'  # URL to scan
+          fail_action: false  # Do not fail the workflow on scan failures
+          format: 'json'  # Report format (could be json, html, or markdown)
 
       - name: Upload Scan Report as Artifact
-        uses: actions/upload-artifact@v3.1.2
+        uses: actions/upload-artifact@v3  # Use a stable version for artifact upload
         with:
-          name: "owasp_zap_results"
+          name: zap_scan_reports
           path: |
             report_json.json
             report_md.md
