@@ -19,7 +19,4 @@ jobs:
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           fail_action: false
-          artifact_name: 'zap-full-scan-report'
-
-      - name: Skip Artifact Upload
-        run: echo "Skipping artifact upload step."
+          cmd_options: '-z "-config zap.artifact.enabled=false"'
