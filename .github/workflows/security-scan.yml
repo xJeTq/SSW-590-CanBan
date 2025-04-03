@@ -24,10 +24,10 @@ jobs:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           fail_action: false
 
-      - name: Upload ZAP Scan Report
-        uses: actions/upload-artifact@v4
-        with:
-          name: zap_scan_report
-          path: report_html.html
-        continue-on-error: true
+      # - name: Upload ZAP Scan Report
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: zap_scan_report
+      #     path: report_html.html
+      #   continue-on-error: true
 
