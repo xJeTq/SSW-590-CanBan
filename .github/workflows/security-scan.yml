@@ -8,8 +8,9 @@ on:
     - cron: '0 12 * * 1'
 
 permissions:
-  contents: read
-  actions: write
+  issues: write  # Allow creating/modifying issues
+  contents: read  # Required for accessing repository content
+  actions: write  # Required for executing actions
 
 jobs:
   zap_scan:
