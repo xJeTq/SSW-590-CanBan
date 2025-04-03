@@ -8,9 +8,8 @@ on:
     - cron: '0 12 * * 1'
 
 permissions:
-  issues: write  # Allow creating/modifying issues
-  contents: read  # Required for accessing repository content
-  actions: write  # Required for executing actions
+  contents: read
+  actions: write
 
 jobs:
   zap_scan:
@@ -25,6 +24,8 @@ jobs:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           rules_file_name: '.zap/rules.tsv'
           fail_action: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
 
       - name: Skip Artifact Upload
         run: echo "Skipping artifact upload step."
