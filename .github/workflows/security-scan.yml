@@ -1,4 +1,4 @@
-name: OWASP ZAP Baseline Scan
+name: OWASP ZAP Security Scan
 
 on:
   push:
@@ -14,6 +14,7 @@ permissions:
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -23,9 +24,16 @@ jobs:
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           fail_action: false
-          issue_title: "OWASP ZAP Security Scan Report"
-        env:
-          GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
+          artifact_name: "owasp_zap_results"
 
-      - name: Skip Artifact Upload
-        run: echo "Skipping artifact upload step."
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload Scan Report as Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: "owasp_zap_results"
+          path: |
+            report_json.json
+            report_md.md
+            report_html.html
