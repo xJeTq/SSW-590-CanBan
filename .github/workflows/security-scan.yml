@@ -10,7 +10,9 @@ on:
 permissions:
   contents: read
   actions: write
-
+  issues: write
+  metadata: read
+  
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
