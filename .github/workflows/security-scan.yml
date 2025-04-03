@@ -18,8 +18,8 @@ jobs:
         uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
-          rules_file_name: '.zap/rules.tsv'
           fail_action: false
+          artifact_name: 'zap-full-scan-report'
 
       - name: Skip Artifact Upload
         run: echo "Skipping artifact upload step."
