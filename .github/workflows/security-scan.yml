@@ -3,7 +3,7 @@ name: Simple Nikto Security Test
 on:
   push:
     branches:
-      - test
+      - test  # Trigger on push to the 'test' branch
 
 jobs:
   nikto_scan:
@@ -16,8 +16,8 @@ jobs:
       - name: Install Nikto
         run: sudo apt-get install -y nikto
 
-      - name: Run Nikto Security Scan
-        run: nikto -h https://silly-capybara-11cf1f.netlify.app/
+      - name: Run Nikto Security Scan and Generate HTML Report
+        run: nikto -h https://silly-capybara-11cf1f.netlify.app/ -o nikto_report.html -Format htm  # Generate HTML report
 
-      - name: Display Scan Results
+      - name: Display Nikto HTML Report in Logs
         run: cat nikto_report.html
