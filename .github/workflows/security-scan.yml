@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: '0 12 * * 1'
 
+permissions:
+  contents: write
+  issues: write
+
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
@@ -18,7 +22,6 @@ jobs:
         uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
-          rules_file_name: '.zap/rules.tsv'
           fail_action: false
 
       - name: Upload ZAP Scan Report
