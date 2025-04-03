@@ -1,4 +1,4 @@
-name: Simple Security Test with Nikto
+name: Simple Nikto Security Test
 
 on:
   push:
@@ -19,10 +19,5 @@ jobs:
       - name: Run Nikto Security Scan
         run: nikto -h https://silly-capybara-11cf1f.netlify.app/
 
-      - name: Save Nikto Report as Artifact
-        run: mv nikto_report.html ./nikto_report.html
-      - name: Upload Nikto Report as Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: nikto_report
-          path: ./nikto_report.html
+      - name: Display Scan Results
+        run: cat nikto_report.html
