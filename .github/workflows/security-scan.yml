@@ -14,16 +14,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: Run OWASP ZAP Security Scan
         uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           fail_action: false
+          artifact_name: "owasp-zap-results"
         env:
           GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
 
-      - name: Skip Artifact Upload
-        run: echo "Skipping artifact upload step."
