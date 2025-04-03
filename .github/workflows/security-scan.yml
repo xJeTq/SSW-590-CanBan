@@ -1,30 +1,28 @@
-name: OWASP ZAP Security Scan
+name: Simple Security Test with Nikto
 
 on:
   push:
     branches:
-      - test  # Trigger on push to the 'test' branch
+      - test
 
 jobs:
-  zap_scan:
+  nikto_scan:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4  # Checkout the repository code
+        uses: actions/checkout@v4
 
-      - name: Run OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.11.0
-        with:
-          target: 'https://silly-capybara-11cf1f.netlify.app/'  # URL to scan
-          fail_action: false  # Do not fail the workflow on scan failures
-          format: 'json'  # Report format (could be json, html, or markdown)
+      - name: Install Nikto
+        run: sudo apt-get install -y nikto
 
-      - name: Upload Scan Report as Artifact
-        uses: actions/upload-artifact@v3  # Use a stable version for artifact upload
+      - name: Run Nikto Security Scan
+        run: nikto -h https://silly-capybara-11cf1f.netlify.app/
+
+      - name: Save Nikto Report as Artifact
+        run: mv nikto_report.html ./nikto_report.html
+      - name: Upload Nikto Report as Artifact
+        uses: actions/upload-artifact@v3
         with:
-          name: zap_scan_reports
-          path: |
-            report_json.json
-            report_md.md
-            report_html.html
+          name: nikto_report
+          path: ./nikto_report.html
