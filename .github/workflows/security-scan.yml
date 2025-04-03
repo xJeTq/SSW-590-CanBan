@@ -7,6 +7,10 @@ on:
   schedule:
     - cron: '0 12 * * 1'
 
+permissions:
+  contents: read
+  actions: write
+
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
@@ -18,5 +22,8 @@ jobs:
         uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
+          rules_file_name: '.zap/rules.tsv'
           fail_action: false
-          cmd_options: '-z "-config zap.artifact.enabled=false"'
+
+      - name: Skip Artifact Upload
+        run: echo "Skipping artifact upload step."
