@@ -21,9 +21,5 @@ jobs:
           rules_file_name: '.zap/rules.tsv'
           fail_action: false
 
-      # The artifact upload step is removed to avoid authorization issues
-      # - name: Upload ZAP Scan Report
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: ZAP-Report
-      #     path: report_html.html
+      - name: Skip Artifact Upload
+        run: echo "Skipping artifact upload step."
