@@ -21,5 +21,12 @@ jobs:
           rules_file_name: '.zap/rules.tsv'
           fail_action: false
 
-      - name: Skip Artifact Upload
-        run: echo "Skipping artifact upload step."
+      - name: Upload ZAP Scan Reports
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: ZAP-Scan-Report
+          path: |
+            report_json.json
+            report_md.md
+            report_html.html
