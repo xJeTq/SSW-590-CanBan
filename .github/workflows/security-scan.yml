@@ -14,8 +14,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Run OWASP ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.11.0
+      - name: Run OWASP ZAP Security Scan
+        uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           rules_file_name: '.zap/rules.tsv'
