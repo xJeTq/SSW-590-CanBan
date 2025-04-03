@@ -6,9 +6,10 @@ on:
       - test
 
 permissions:
-  contents: write
+  contents: read
   actions: write
   security-events: write
+  issues: write
 
 jobs:
   zap_scan:
@@ -22,6 +23,7 @@ jobs:
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
           fail_action: false
+          issue_title: ""
         env:
           GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
 
