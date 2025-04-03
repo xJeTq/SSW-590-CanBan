@@ -4,8 +4,6 @@ on:
   push:
     branches:
       - test
-  schedule:
-    - cron: '0 12 * * 1'
 
 permissions:
   contents: read
@@ -13,7 +11,7 @@ permissions:
   issues: write
 
 jobs:
-  zapper:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
@@ -23,7 +21,6 @@ jobs:
         uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
-          rules_file_name: '.zap/rules.tsv'
           fail_action: false
         env:
           GITHUB_TOKEN: ${{ secrets.MY_PERSONAL_ACCESS_TOKEN }}
