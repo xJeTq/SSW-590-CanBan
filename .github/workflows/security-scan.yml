@@ -3,16 +3,26 @@ name: OWASP ZAP Security Scan
 on:
   push:
     branches:
-      - test
+      - main
   schedule:
-    - cron: '0 12 * * 1'
+    - cron: '0 12 * * 1'  # Runs every Monday at 12:00 UTC
 
 jobs:
   zap_scan:
     runs-on: ubuntu-latest
     steps:
-      - name: Start ZAP Baseline Scan
-        uses: zaproxy/action-baseline@v0.8.0
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Run OWASP ZAP Security Scan
+        uses: zaproxy/action-full-scan@v0.11.0
         with:
           target: 'https://silly-capybara-11cf1f.netlify.app/'
+          rules_file_name: '.zap/rules.tsv'
           fail_action: false
+
+      - name: Upload ZAP Scan Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: ZAP-Report
+          path: report_html.html
