@@ -13,7 +13,7 @@ permissions:
   issues: write
 
 jobs:
-  zap_scan:
+  zapper:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
