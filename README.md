@@ -10,3 +10,5 @@ The group worked on these files separately. Once we were all done, I compiled th
 [![CodeQL Analysis](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/codeql-analysis.yml)
 
 [![Secret Scanning](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/secret_scan.yml/badge.svg)](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/secret_scan.yml)
+
+[![Simple Nikto Security Test](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/security-scan.yml/badge.svg)](https://github.com/xJeTq/SSW-590-CanBan/actions/workflows/security-scan.yml)
