@@ -1,0 +1,20 @@
+name: Lighthouse CI
+
+on:
+  push:
+    branches:
+      - test
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Run Lighthouse CI
+        run: lhci autorun --config=./lighthouserc.json

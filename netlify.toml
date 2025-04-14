@@ -1,0 +1,11 @@
+[build]
+  publish = "."
+  command = "npm run build"
+
+[[headers]]
+for = "/*"
+  [headers.values]
+  Content-Security-Policy = "default-src 'self'"
+  X-Frame-Options = "DENY"
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "no-referrer"
